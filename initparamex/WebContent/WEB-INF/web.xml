@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>initparamex</display-name>
+	<welcome-file-list>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>InitParamex</servlet-name>
+		<servlet-class>com.javalec.InitParamex</servlet-class>
+		<init-param>
+			<param-name>id</param-name>
+			<param-value>aaaaa</param-value>
+		</init-param>
+		<init-param>
+			<param-name>pw</param-name>
+			<param-value>1234</param-value>
+		</init-param>
+		<init-param>
+			<param-name>path</param-name>
+			<param-value>d:\</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>InitParamex</servlet-name>
+		<url-pattern>/initparam</url-pattern>
+	</servlet-mapping>
+
+</web-app>
+
