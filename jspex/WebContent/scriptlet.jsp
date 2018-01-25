@@ -38,11 +38,18 @@
 			out.println("2 * " + i + "=" + (2 * i) + "<br>");
 	%>
 	====================================
+	
 	<br>
 	<%
 		if (i >= 9)
 				break;
 		}
 	%>
+	
+	<!-- 
+	dsgdsggds
+	dsgdsg
+	sdgdsggd
+	 -->
 </body>
 </html>
