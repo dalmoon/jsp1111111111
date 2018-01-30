@@ -28,7 +28,7 @@
 			sName = enums.nextElement().toString();
 			sValue = session.getAttribute(sName).toString();
 			out.println("sName:" + sName + "<br>");
-			out.println("sName:" + sValue + "<br>");
+			out.println("sValue:" + sValue + "<br>");
 		}
 	%>
 	<hr>
@@ -37,6 +37,24 @@
 		out.println("sessionId:" + sessionId + "<br>");
 		int sessionInter = session.getMaxInactiveInterval();
 		out.println("sessionInter:" + sessionInter + "<br>");
+
+		session.removeAttribute("mySessionName");
+
+		Enumeration<String> renums = session.getAttributeNames();
+		while (renums.hasMoreElements()) {
+			sName = renums.nextElement().toString();
+			sValue = session.getAttribute(sName).toString();
+			out.println("sName:" + sName + "<br>");
+			out.println("sValue:" + sValue + "<br>");
+		}
+
+		session.invalidate();
+
+		if (request.isRequestedSessionIdValid()) {
+			out.println("session valid");
+		} else {
+			out.println("session invalid");
+		}
 	%>
 </body>
 </html>
