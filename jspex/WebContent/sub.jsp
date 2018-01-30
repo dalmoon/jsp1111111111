@@ -7,15 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>sub.jsp</h1>
 <%!
 	String id, pw;
 %>
 <%
 	id = request.getParameter("id");
-	pw = request.getParameter("pw");
+	pw = request.getParameter("pw");	
 %>
-<h1>include01.jsp 입니다.</h1>
-아이디 : <%=id %><br>
-비밀번호 : <%=pw %>
+
+아이디 : <%=id %> 입니다.
+비밀번호 : <%=pw %> 입니다.
+
 </body>
 </html>

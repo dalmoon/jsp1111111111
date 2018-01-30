@@ -7,21 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>includeEx.jsp 입니다.</h1>
-	<%!
-		String id, pw;
-	%>
-	<%
-		id = "testid";
-		pw = "testpwd";
-	%>
-	<jsp:include page="Include01.jsp">
+	<h1>main.jsp</h1>
+
+	<jsp:forward page="sub.jsp">
 		<jsp:param value="abcde" name="id" />
 		<jsp:param value="12345" name="pw" />
-	</jsp:include>
+	</jsp:forward>
 
-	<%@ include file="Include02.jsp"%>
-
-	<h1>다시 include01.jsp 페이지 입니다.</h1>
 </body>
 </html>
