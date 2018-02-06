@@ -25,20 +25,19 @@
 <%
 	try{
 		Class.forName(driver);
-		connection = DriverManager.getConnection(url);
+		connection = DriverManager.getConnection(url,uid,upw);
 		statement = connection.createStatement();
 		resultSet = statement.executeQuery(sql);
 		
 		while(resultSet.next()){
-			String id = resultSet.getString("idx");
+			String id = resultSet.getString("id");
 			String name = resultSet.getString("name");
-			String pw = resultSet.getString("pw");
 			String phone = resultSet.getString("phone");
 		
-			out.println("idx :" + id + ", name :" + name + ", pw :" + pw + ", phone :" + phone);
+			out.println("id :" + id + ", name :" + name + ", phone :" + phone);
 		}
 	}catch(Exception e){
-		out.println("error");
+		out.println(e.getMessage());
 	}finally{
 		try{
 			if(resultSet != null) resultSet.close();
@@ -48,15 +47,5 @@
 	}
 
 %>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
