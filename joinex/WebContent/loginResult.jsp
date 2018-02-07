@@ -7,8 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-회원가입이 정상처리 되었습니다.<br>
+<%!
+	String name, id, pw;
+%>
+<%
+	name = (String)session.getAttribute("name");
+	id = (String)session.getAttribute("id");
+	pw = (String)session.getAttribute("pw");
+%>
+
+<%=name %>님 안녕하세요.<br>
 <hr>
-<a href="login.html">로그인</a>
+<a href="modify.jsp">회원정보수정</a>
 </body>
 </html>
