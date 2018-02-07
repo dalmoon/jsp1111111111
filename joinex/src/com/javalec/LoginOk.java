@@ -78,8 +78,9 @@ public class LoginOk extends HttpServlet {
 				if(resultSet != null) resultSet.close();
 				if(stmt != null) stmt.close();
 				if(connection != null) connection.close();
-			}catch(Exception e){}
-		}
-		
+			}catch(Exception e2){
+				e2.printStackTrace();
+			}
+		}	
 	}
 }

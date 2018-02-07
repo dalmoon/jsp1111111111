@@ -82,7 +82,9 @@ public class JoinOk extends HttpServlet {
 			try{
 				if(statement != null) statement.close();
 				if(connection != null) connection.close();
-			}catch(Exception e){}
+			}catch(Exception e2){
+				e2.printStackTrace();
+			}
 		}
 	}
 }
