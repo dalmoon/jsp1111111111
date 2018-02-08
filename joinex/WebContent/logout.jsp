@@ -7,18 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%!
-	String name, id, pw;
-%>
 <%
-	name = (String)session.getAttribute("name");
-	id = (String)session.getAttribute("id");
-	pw = (String)session.getAttribute("pw");
+session.invalidate();
+response.sendRedirect("login.html");
 %>
-
-<%=name %>님 안녕하세요.<br>
-<hr>
-<a href="modify.jsp">회원정보수정</a><br>
-<a href="delete.jsp">회원탈퇴</a>
 </body>
 </html>

@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,18 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/ModifyOk")
-public class ModifyOk extends HttpServlet {
+@WebServlet("/DeleteOk")
+public class DeleteOk extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	private Connection conn;
 	private Statement stmt;
 	
-	private String name, id, pw, phone1, phone2, phone3, gender;
-	
 	HttpSession httpSession;
 	
-    public ModifyOk() {
+	private String pw, id;
+	
+    public DeleteOk() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,22 +41,11 @@ public class ModifyOk extends HttpServlet {
 		
 		httpSession = request.getSession();
 		
-		name = request.getParameter("name");
-		id = request.getParameter("id");
 		pw = request.getParameter("pw");
-		phone1 = request.getParameter("phone1");
-		phone2 = request.getParameter("phone2");
-		phone3 = request.getParameter("phone3");
-		gender = request.getParameter("gender");
+		id = request.getParameter("id");
 		
 		if(pwConfirm()) {
-			
-			String sql = "update members set name='" + name 
-					+ "', phone1='" + phone1 
-					+ "', phone2='" + phone2 
-					+ "', phone3='" + phone3 
-					+ "', gender='" + gender + "'"
-					+ " where id = '" + id + "'";
+			String sql = "delete from members where id = '" + id + "'";
 			System.out.println(sql);
 			
 			try {
@@ -69,12 +57,11 @@ public class ModifyOk extends HttpServlet {
 				stmt = conn.createStatement();
 				int i = stmt.executeUpdate(sql);
 				if(i == 1) {
-					System.out.println("update success");
-					httpSession.setAttribute("name", name);
-					response.sendRedirect("modifyResult.jsp");
+					System.out.println("delete success");
+					response.sendRedirect("login.html");
 				}else {
-					System.out.println("update fail");
-					response.sendRedirect("modify.jsp");
+					System.out.println("delete fail");
+					response.sendRedirect("delete.jsp");
 				}
 				
 			} catch (Exception e) {
@@ -89,19 +76,16 @@ public class ModifyOk extends HttpServlet {
 			}
 		}else {
 			System.out.println("password fail");
-			response.sendRedirect("modify.jsp");
+			response.sendRedirect("delete.jsp");
 		}
 	}
 
 	private boolean pwConfirm() {
 		boolean rs = false;
-		
-		String sessionPw = (String)httpSession.getAttribute("pw");
-		
-		if(sessionPw.equals(pw)) {
+		String spw = (String)httpSession.getAttribute("pw");
+		if(spw.equals(pw)) {
 			rs = true;
 		}
-		
 		return rs;
 	}
 

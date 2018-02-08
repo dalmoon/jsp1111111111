@@ -8,17 +8,15 @@
 </head>
 <body>
 <%!
-	String name, id, pw;
+String id;
 %>
 <%
-	name = (String)session.getAttribute("name");
-	id = (String)session.getAttribute("id");
-	pw = (String)session.getAttribute("pw");
+id = (String)session.getAttribute("id");
 %>
-
-<%=name %>님 안녕하세요.<br>
-<hr>
-<a href="modify.jsp">회원정보수정</a><br>
-<a href="delete.jsp">회원탈퇴</a>
+<form action="DeleteOk" method="post">
+<input type="hidden" name="id" value="<%=id%>"><br>
+비밀번호 입력 : <input type="password" name="pw" size="10"><br>
+<input type="submit" value="회원탈퇴">
+</form>
 </body>
 </html>
