@@ -25,4 +25,7 @@
     <!--
     <Manager pathname="" />
     -->
+<Resource auth="Container" driverClassName="com.mysql.jdbc.Driver"
+maxActive="50" maxWait="1000" name="jdbc/mysql" type="javax.sql.DataSource"
+url="jdbc:mysql://localhost:3306/jspdb" username="root" password="mysql" />
 </Context>
