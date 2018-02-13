@@ -28,13 +28,13 @@ public class MemberDAO {
 	
 	private Connection getConnection() {
 		Context context = null;
-		DataSource dataSource = null;
+		DataSource ds = null;
 		Connection conn = null;
 		
 		try {
 			context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/mysql");
-			conn = dataSource.getConnection();
+			ds = (DataSource)context.lookup("java:comp/env/jdbc/mysql");
+			conn = ds.getConnection();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
