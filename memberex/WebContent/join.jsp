@@ -9,12 +9,12 @@
 <body>
 <form action="joinOk.jsp" method="post" name="reg_frm">
 	id : <input type="text" name="id" size="20"><br>
-	pw : <input type="password" name="pw" size="20"><br>
-	re pw : <input type="password" name="pw_check" size="20"><br>
+	pw : <input type="password" name="pw" id="pw" size="20"><br>
+	re pw : <input type="password" name="pw_check" id="repw" size="20"><br>
 	name : <input type="text" name="name" size="20"><br>
 	email : <input type="text" name="email" size="40"><br>
 	address : <input type="text" name="address" size="40"><br>		
-	<input type="submit" value="회원가입">
+	<input type="submit" value="회원가입">	
 </form>
 </body>
 </html>
