@@ -179,4 +179,30 @@ public class MemberDAO {
 		}
 		return dto;
 	}
+	
+	public int updateMember(MemberDTO dto) {
+		int ri = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "update member set (name,email,address) values (?,?,?) where id = ?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(3, dto.getName());
+			pstmt.setString(4, dto.getEmail());
+			pstmt.setString(5, dto.getAddress());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return ri;
+	}
 }
