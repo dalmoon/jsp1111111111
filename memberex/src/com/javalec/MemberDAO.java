@@ -184,14 +184,39 @@ public class MemberDAO {
 		int ri = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update member set (name,email,address) values (?,?,?) where id = ?";
+		String sql = "update member set name=?,email=?,address=? where id=?";
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, dto.getEmail());
-			pstmt.setString(5, dto.getAddress());
+			pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getEmail());
+			pstmt.setString(3, dto.getAddress());
+			pstmt.setString(4, dto.getId());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return ri;
+	}
+	
+	public int deleteMember(MemberDTO dto) {
+		int ri = 0;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "delete from member where id=?";
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

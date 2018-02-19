@@ -18,6 +18,7 @@ if(session.getAttribute("VailiMen") == null){
 <form action="logout.jsp" method="post">
 	<input type="submit" value="logout"> &nbsp;&nbsp;&nbsp;&nbsp;
 	<input type="button" onclick="javascript:window.location='modify.jsp'" value="정보수정">
+	<input type="button" onclick="javascript:window.location='delete.jsp'" value="회원탈퇴">
 </form>
 </body>
 </html>
