@@ -1,3 +1,6 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -6,6 +9,19 @@
 int size = 1024 * 1024 * 10; // 10M
 String file = "";
 String oriFile = "";
+
+try{
+	MultipartRequest multi = new MultipartRequest(request, path, size, "UTF-8", new DefaultFileRenamePolicy());
+			
+	Enumeration files = multi.getFileNames();
+	String str = (String)files.nextElement();
+			
+	file = multi.getFilesystemName(str);
+	oriFile = multi.getOriginalFileName(str);
+	
+}catch(Exception e){
+	e.printStackTrace();
+}
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,6 +30,7 @@ String oriFile = "";
 <title>Insert title here</title>
 </head>
 <body>
-
+<%=file %><br>
+<%=oriFile %><br>
 </body>
 </html>
