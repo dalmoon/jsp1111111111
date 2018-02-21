@@ -9,11 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("*.do")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	HttpSession httpSession;   
     public MemberController() {
         super();
     }
@@ -49,11 +50,54 @@ public class MemberController extends HttpServlet {
 			}
 			write.println("</body></html>");
 		}else if(command.equals("/join.do")) {
-			request.setCharacterEncoding("utf-8");
-			
+			request.setCharacterEncoding("UTF-8");
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String address = request.getParameter("address");
+			MemberDTO dto = new MemberDTO();
+			dto.setId(id);
+			dto.setPw(pw);
+			dto.setName(name);
+			dto.setEmail(email);
+			dto.setAddress(address);
 			Service service = new MembersAllService();
+			service.insert(dto);
+			response.sendRedirect("login.jsp");
+		}else if(command.equals("/login.do")) {
+			request.setCharacterEncoding("UTF-8");
+			String id = request.getParameter("id");
+			String pw = request.getParameter("pw");
+			Service service = new MembersAllService();
+			service.userCheck(id, pw);
 			MemberDTO dt = new MemberDTO();
-			service.insert(dt);
+			dt = service.getMember(id);
+			String name = dt.getName();
+			HttpSession httpsession = request.getSession();
+			httpsession.setAttribute("name", name);
+			httpsession.setAttribute("id", id);
+			httpsession.setAttribute("VailiMen", "yes");
+			response.sendRedirect("login.jsp");
+		}else if(command.equals("/modify.do")) {
+			request.setCharacterEncoding("UTF-8");
+			httpSession = request.getSession();
+			String pw2 = (String)httpSession.getAttribute("pw");
+			String pw = request.getParameter("pw");
+			if(pw2.equals(pw)) {
+				String name = request.getParameter("name");
+				String email = request.getParameter("email");
+				String address = request.getParameter("address");
+				String id = (String)httpSession.getAttribute("id");
+				MemberDTO dt = new MemberDTO();
+				dt.setName(name);
+				dt.setEmail(email);
+				dt.setAddress(address);
+				dt.setId(id);
+				Service service = new MembersAllService();
+				service.updat(dt);
+				response.sendRedirect("login.jsp");
+			}	
 		}
 	}
 }

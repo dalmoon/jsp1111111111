@@ -48,7 +48,7 @@ function join_check() {
 
 </head>
 <body>
-<form action="joinOk.jsp" method="post" name="reg_frm">
+<form action="join.do" method="post" name="reg_frm">
 	id : <input type="text" name="id" size="20"><br>
 	pw : <input type="password" name="pw" size="20"><br>
 	re pw : <input type="password" name="pw_check" size="20"><br>

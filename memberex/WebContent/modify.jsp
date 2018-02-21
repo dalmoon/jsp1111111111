@@ -22,7 +22,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="modifyOk.jsp" method="post" name="reg_frm">
+<form action="modify.do" method="post" name="reg_frm">
 	<input type="hidden" name="id" value="<%=id%>"><br>
 	pw : <input type="password" name="pw" size="20"><br>
 	name : <input type="text" name="name" size="20" value="<%=name%>"><br>
