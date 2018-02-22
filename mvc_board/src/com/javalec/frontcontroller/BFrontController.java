@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javalec.command.BCommand;
+import com.javalec.command.BContentCommand;
+import com.javalec.command.BListCommand;
 import com.javalec.command.BWriteCommand;
 
 /**
@@ -46,17 +48,24 @@ public class BFrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
-		
-		if(com.equals("/write_view.do")) {
+		if(com.equals("/list.do")) {
+			command = new BListCommand();
+			command.execute(request, response);
+			viewPage = "list.jsp";
+		}else if(com.equals("/write_view.do")) {
 			viewPage = "write_view.jsp";
 		} else if(com.equals("/write.do")) {
 			command = new BWriteCommand();
 			command.execute(request, response);
 			viewPage = "list.do";
+		}else if(com.equals("/content_view.do")) {
+			command = new BContentCommand();
+			command.execute(request, response);
+			viewPage = "content_view.jsp";
 		}
 		
 		if(viewPage == "list.do") {
-			response.sendRedirect("list.jsp");
+			response.sendRedirect("list.do");
 		}else {
 			RequestDispatcher dc 
 			= request.getRequestDispatcher(viewPage);
